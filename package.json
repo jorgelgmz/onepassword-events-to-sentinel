@@ -1,0 +1,34 @@
+{
+  "name": "onepassword-events-to-sentinel",
+  "version": "1.0.0",
+  "description": "Send 1Password Log Events to Azure Sentinel",
+  "type": "module",
+  "scripts": {
+    "start": "func start"
+  },
+  "author": "Jorge L Gomez",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jorgelgmz/onepassword-events-to-sentinel.git"
+  },
+  "devDependencies": {
+    "eslint": "^8.16.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-no-unsanitized": "^4.0.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-prototype-pollution-security-rules": "^1.0.6",
+    "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-scanjs-rules": "^0.2.1",
+    "prettier": "^2.6.2"
+  },
+  "dependencies": {
+    "@azure/identity": "^2.0.4",
+    "@azure/keyvault-secrets": "^4.4.0",
+    "axios": "^0.27.2",
+    "chalk": "^5.0.1"
+  }
+}

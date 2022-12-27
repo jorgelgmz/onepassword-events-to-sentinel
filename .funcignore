@@ -1,0 +1,11 @@
+*.js.map
+*.ts
+.git*
+.vscode
+local.settings.json
+test
+tsconfig.json
+img/
+.eslintrc.json
+.prettierrc.json
+readme.md
