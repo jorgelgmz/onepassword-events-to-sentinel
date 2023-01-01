@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { DefaultAzureCredential } from '@azure/identity';
 import { SecretClient } from '@azure/keyvault-secrets';
-import chalk from 'chalk';
 
 export default async function (context, myTimer) {
   const credential = new DefaultAzureCredential();
@@ -27,25 +26,23 @@ export default async function (context, myTimer) {
       };
       let logAnalytics = await axios.post(process.env.LOGIC_HUB_URL, JSON.stringify(opEvents.data), api);
       context.log(
-        chalk.bold.red(
-          `${opEvents.data.items.length} 1Password event(s) sent to Azure Sentinel with server response code ${logAnalytics.status} and status response ${logAnalytics.statusText}`,
-        ),
+        `${opEvents.data.items.length} 1Password event(s) sent to Azure Sentinel with server response code ${logAnalytics.status} and status response ${logAnalytics.statusText}`,
       );
       await client.setSecret('onepassword-cursor', opEvents.data.cursor);
       if (opEvents.data.has_more === false) {
-        context.log(chalk.bold.green('No new 1Password events to send.'));
+        context.log('No new 1Password events to send.');
       } else {
-        context.log(chalk.bold.red('1Password has more events to send.'));
+        context.log('1Password has more events to send.');
       }
       if (cursor.value === opEvents.data.cursor) {
-        context.log(chalk.bold.red('The 1Password Cursor has not changed.'));
+        context.log('The 1Password Cursor has not changed.');
       } else {
-        context.log(chalk.bold.green('The 1Password Cursor has changed.'));
+        context.log('The 1Password Cursor has changed.');
       }
     } catch (err) {
-      context.log(chalk.bold.red('Unable to post to Azure Log Analytics with error message:'), err.message);
+      context.log(`Unable to post to Azure Log Analytics with error message: ${err.message}`);
     }
   } catch (err) {
-    context.log(chalk.bold.red('Unable to get events from 1Password with error message:'), err.message);
+    context.log(`Unable to get events from 1Password with error message: ${err.message}`);
   }
 }
